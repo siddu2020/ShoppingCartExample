@@ -1,7 +1,9 @@
 using CartModels;
+using CartModels.Exceptions;
 using EqualExpertsShoppingCartAbstract;
 using EqualExpertsShoppingCartImplementation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace EqualExpertsShoppingCartAPI.Controllers
 {
@@ -12,10 +14,10 @@ namespace EqualExpertsShoppingCartAPI.Controllers
         private TaxSettings TaxSettings { get; init; }
         private ICartsManager CartsManager { get; init; }
         private HttpClient Client { get; init; }
-        public CartController(ICartsManager cartsManager, TaxSettings taxSettings, IHttpClientFactory clientFactory)
+        public CartController(ICartsManager cartsManager, IOptions<TaxSettings> taxSettings, IHttpClientFactory clientFactory)
         {
             CartsManager = cartsManager;
-            TaxSettings = taxSettings;
+            TaxSettings = taxSettings.Value;
             Client = clientFactory.CreateClient("products");
         }
         
@@ -45,9 +47,13 @@ namespace EqualExpertsShoppingCartAPI.Controllers
                 cartManager.AddProductInfo(productName, quantity);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (ProductNotFoundException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
             
         }

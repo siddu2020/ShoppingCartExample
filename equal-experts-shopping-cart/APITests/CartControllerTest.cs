@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace EqualExpertsShoppingCartAPITests;
 
@@ -11,7 +12,9 @@ public class CartControllerTest
             var cartsManagerMock = new Mock<ICartsManager>();
             var taxSettings = new TaxSettings(0.125m);
             var mockClient = new Mock<IHttpClientFactory>();
-            var controller = new CartController(cartsManagerMock.Object, taxSettings,mockClient.Object);
+            var optionsMock = new Mock<IOptions<TaxSettings>>();
+            optionsMock.Setup(op => op.Value).Returns(taxSettings);
+            var controller = new CartController(cartsManagerMock.Object, optionsMock.Object,mockClient.Object);
             var cart = new ShoppingCart()
             {
                 ShoppingCartItems = new HashSet<ShoppingCartItem>(),
@@ -40,7 +43,9 @@ public class CartControllerTest
             cartsManagerMock
                 .Setup(c => c.GetCartById(expectedCart.Id.ToString()))
                 .Returns(expectedCart);
-            var controller = new CartController(cartsManagerMock.Object, taxSettings, mockClient.Object);
+            var optionsMock = new Mock<IOptions<TaxSettings>>();
+            optionsMock.Setup(op => op.Value).Returns(taxSettings);
+            var controller = new CartController(cartsManagerMock.Object, optionsMock.Object, mockClient.Object);
 
             // Act
             var result = controller
@@ -58,7 +63,9 @@ public class CartControllerTest
             var cartsManagerMock = new Mock<ICartsManager>();
             var taxSettings = new TaxSettings(0.125m);
             var mockClient = new Mock<IHttpClientFactory>();
-            var controller = new CartController(cartsManagerMock.Object, taxSettings, mockClient.Object);
+            var optionsMock = new Mock<IOptions<TaxSettings>>();
+            optionsMock.Setup(op => op.Value).Returns(taxSettings);
+            var controller = new CartController(cartsManagerMock.Object, optionsMock.Object, mockClient.Object);
             var cart = new ShoppingCart()
             {
                 ShoppingCartItems = new HashSet<ShoppingCartItem>(),
@@ -78,7 +85,9 @@ public class CartControllerTest
             var cartsManagerMock = new Mock<ICartsManager>();
             var taxSettings = new TaxSettings(0.125m);
             var mockClient = new Mock<IHttpClientFactory>();
-            var controller = new CartController(cartsManagerMock.Object, taxSettings, mockClient.Object);
+            var optionsMock = new Mock<IOptions<TaxSettings>>();
+            optionsMock.Setup(op => op.Value).Returns(taxSettings);
+            var controller = new CartController(cartsManagerMock.Object, optionsMock.Object, mockClient.Object);
             var cart = new ShoppingCart()
             {
                 ShoppingCartItems = new HashSet<ShoppingCartItem>(),
@@ -100,14 +109,17 @@ public class CartControllerTest
             var cartsManagerMock = new Mock<ICartsManager>();
             var taxSettings = new TaxSettings(0.125m);
             var mockClient = new Mock<IHttpClientFactory>();
-            var controller = new CartController(cartsManagerMock.Object, taxSettings, mockClient.Object);
-            mockClient.Setup(c => c.CreateClient("products")).Returns(new HttpClient());
+            var optionsMock = new Mock<IOptions<TaxSettings>>();
+            optionsMock.Setup(op => op.Value).Returns(taxSettings);
+            var controller = new CartController(cartsManagerMock.Object, optionsMock.Object, mockClient.Object);
             var cart = new ShoppingCart()
             {
                 ShoppingCartItems = new HashSet<ShoppingCartItem>(),
                 Id = Guid.NewGuid()
             };
             cartsManagerMock.Setup(c => c.GetCartById(cart.Id.ToString())).Returns(cart);
+            cartsManagerMock.Setup(c => c.GetCartManagerById(cart.Id.ToString()))
+                .Returns(new CartManager(taxSettings, cart, new HttpClient()));
             // Act
             var result = controller.AddProductToCart(cart.Id.ToString(), "cheerios", 2);
             // Assert

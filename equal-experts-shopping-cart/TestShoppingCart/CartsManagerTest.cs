@@ -1,4 +1,7 @@
+using CartModels;
 using EqualExpertsShoppingCartImplementation;
+using Microsoft.Extensions.Options;
+using Moq;
 
 namespace TestShoppingCart;
 
@@ -9,7 +12,11 @@ public class CartsManagerTest
     public void CreateCart_ShouldReturnNewCart()
     {
         // Arrange
-        var cartsManager = new CartsManager();
+        var taxSettings = new TaxSettings(0.2m);
+        var optionsMock = new Mock<IOptions<TaxSettings>>();
+        var httpClientFactoryMock = new Mock<IHttpClientFactory>();
+        optionsMock.Setup(op => op.Value).Returns(taxSettings);
+        var cartsManager = new CartsManager(optionsMock.Object, httpClientFactoryMock.Object);
 
         // Act
         var cart = cartsManager.CreateCart();
@@ -23,7 +30,11 @@ public class CartsManagerTest
     public void RemoveCart_ShouldRemoveCart()
     {
         // Arrange
-        var cartsManager = new CartsManager();
+        var taxSettings = new TaxSettings(0.2m);
+        var optionsMock = new Mock<IOptions<TaxSettings>>();
+        var httpClientFactoryMock = new Mock<IHttpClientFactory>();
+        optionsMock.Setup(op => op.Value).Returns(taxSettings);
+        var cartsManager = new CartsManager(optionsMock.Object, httpClientFactoryMock.Object);
         var cart = cartsManager.CreateCart();
 
         // Act
@@ -37,7 +48,11 @@ public class CartsManagerTest
     public void GetCartById_ShouldReturnCart()
     {
         // Arrange
-        var cartsManager = new CartsManager();
+        var taxSettings = new TaxSettings(0.2m);
+        var optionsMock = new Mock<IOptions<TaxSettings>>();
+        var httpClientFactoryMock = new Mock<IHttpClientFactory>();
+        optionsMock.Setup(op => op.Value).Returns(taxSettings);
+        var cartsManager = new CartsManager(optionsMock.Object, httpClientFactoryMock.Object);
         var cart = cartsManager.CreateCart();
 
         // Act

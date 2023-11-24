@@ -9,4 +9,6 @@ public interface ICartsManager
     void RemoveCart(string cartId); // Method to remove a cart by ID
 
     ShoppingCart GetCartById(string cartId); 
+    
+    ICartManager GetCartManagerById(string cartId);
 }
