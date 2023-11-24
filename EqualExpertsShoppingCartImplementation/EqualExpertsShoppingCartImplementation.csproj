@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\equal-experts-shopping-cart\equal-experts-shopping-cart-abstract\EqualExpertsShoppingCartAbstract.csproj" />
+    <ProjectReference Include="..\equal-experts-shopping-cart\CartModels\CartModels.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -10,7 +10,6 @@
 We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex. We prefer simple, well tested solutions over clever solutions. 
 
 ### DO
-
 * ✅ Include unit tests
 * ✅ Test both any client and logic
 * ✅ Update the README.md with any relevant information and/or tradeoffs you would like to highlight

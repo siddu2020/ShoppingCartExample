@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "equal-experts-shopping-cart", "equal-experts-shopping-cart", "{A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualExpertsShoppingCartAPI", "equal-experts-shopping-cart\EqualExpertsShoppingCart\EqualExpertsShoppingCartAPI.csproj", "{4259B8F2-E709-43E5-9CD4-36E199B766AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualExpertsShoppingCartAbstract", "equal-experts-shopping-cart\equal-experts-shopping-cart-abstract\EqualExpertsShoppingCartAbstract.csproj", "{D53E352C-BF63-4F46-92F9-EC8158B78F1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartModels", "equal-experts-shopping-cart\CartModels\CartModels.csproj", "{C0C02009-1799-40FE-8C0D-F5C56778D224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestShoppingCart", "equal-experts-shopping-cart\TestShoppingCart\TestShoppingCart.csproj", "{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualExpertsShoppingCartImplementation", "EqualExpertsShoppingCartImplementation\EqualExpertsShoppingCartImplementation.csproj", "{7461AD67-A837-4EEF-9BDD-16609E7267DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualExpertsShoppingCartAPITests", "equal-experts-shopping-cart\APITests\EqualExpertsShoppingCartAPITests.csproj", "{669C72C4-0FE1-4340-A1BF-B25C6DB9E221}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4259B8F2-E709-43E5-9CD4-36E199B766AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4259B8F2-E709-43E5-9CD4-36E199B766AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4259B8F2-E709-43E5-9CD4-36E199B766AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4259B8F2-E709-43E5-9CD4-36E199B766AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53E352C-BF63-4F46-92F9-EC8158B78F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53E352C-BF63-4F46-92F9-EC8158B78F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53E352C-BF63-4F46-92F9-EC8158B78F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53E352C-BF63-4F46-92F9-EC8158B78F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0C02009-1799-40FE-8C0D-F5C56778D224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0C02009-1799-40FE-8C0D-F5C56778D224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0C02009-1799-40FE-8C0D-F5C56778D224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0C02009-1799-40FE-8C0D-F5C56778D224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7461AD67-A837-4EEF-9BDD-16609E7267DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7461AD67-A837-4EEF-9BDD-16609E7267DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7461AD67-A837-4EEF-9BDD-16609E7267DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7461AD67-A837-4EEF-9BDD-16609E7267DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669C72C4-0FE1-4340-A1BF-B25C6DB9E221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669C72C4-0FE1-4340-A1BF-B25C6DB9E221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669C72C4-0FE1-4340-A1BF-B25C6DB9E221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669C72C4-0FE1-4340-A1BF-B25C6DB9E221}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4259B8F2-E709-43E5-9CD4-36E199B766AD} = {A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}
+		{D53E352C-BF63-4F46-92F9-EC8158B78F1B} = {A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}
+		{C0C02009-1799-40FE-8C0D-F5C56778D224} = {A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}
+		{CA542FC8-BC9E-4892-ACE6-9DB63B2A7CE8} = {A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}
+		{669C72C4-0FE1-4340-A1BF-B25C6DB9E221} = {A2C1CDE3-298E-4BF4-A3D7-BF27B81573D6}
+	EndGlobalSection
+EndGlobal
