@@ -17,7 +17,8 @@ public class CartManager:ICartManager
         Cart = cart;
         Settings = settings;
         Client = httpClient;
-        Client.BaseAddress = new Uri("https://equalexperts.github.io/backend-take-home-test-data/");
+        if(string.IsNullOrEmpty(Client.BaseAddress?.ToString()))
+            Client.BaseAddress = new Uri("https://equalexperts.github.io/backend-take-home-test-data/");
     }
     
     public bool AddProductInfo(string productName, int quantity)

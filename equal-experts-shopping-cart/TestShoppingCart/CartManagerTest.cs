@@ -37,6 +37,37 @@ public class CartManagerTest
         Assert.Equal(price, product.ProductInfo.Price);
         Assert.Equal(quantity, product.Quantity);
     }
+    
+    [Fact]
+    public void AddProductInfo_Should_AddProductToCart_ForAproductThatAlreadyExists()
+    {
+        // Arrange
+        var cart = new ShoppingCart();
+        var settings = new TaxSettings(0.125m);
+        var messageHandler = new MockHttpMessageHandler();
+        messageHandler.When("https://equalexperts.github.io/backend-take-home-test-data/Product-1.json")
+            .Respond("application/json", "{\"price\": 10.99, \"title\": \"Product-1\"}");
+        messageHandler.When("https://equalexperts.github.io/backend-take-home-test-data/Product-2.json")
+            .Respond("application/json", "{\"price\": 5.99, \"title\": \"Product-2\"}");
+
+        var cartManager = new CartManager(settings, cart, new HttpClient(messageHandler));
+        var productName = "Product-1";
+        var price = 10.99m;
+        var quantity = 2;
+
+        // Act
+        cartManager.AddProductInfo(productName, quantity);
+        var product = cart.ShoppingCartItems.First();
+        Assert.Equal(productName, product.ProductInfo.Title);
+        Assert.Equal(price, product.ProductInfo.Price);
+        Assert.Equal(quantity, product.Quantity);
+        cartManager.AddProductInfo(productName, quantity);
+         product = cart.ShoppingCartItems.First();
+
+        // Assert
+       
+        Assert.Equal(quantity*2, product.Quantity);
+    }
 
     [Fact]
     public void CalculateTax_Should_ReturnCorrectTaxAmount()
@@ -61,7 +92,7 @@ public class CartManagerTest
     }
     
     [Fact ]
-    public void CalculateTax_Should_ThorwProductNotFoundException()
+    public void CalculateTax_Should_ThrowProductNotFoundException()
     {
         // Arrange
         var cart = new ShoppingCart();

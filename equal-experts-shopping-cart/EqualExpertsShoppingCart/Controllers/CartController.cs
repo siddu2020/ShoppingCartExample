@@ -13,12 +13,10 @@ namespace EqualExpertsShoppingCartAPI.Controllers
     {
         private TaxSettings TaxSettings { get; init; }
         private ICartsManager CartsManager { get; init; }
-        private HttpClient Client { get; init; }
-        public CartController(ICartsManager cartsManager, IOptions<TaxSettings> taxSettings, IHttpClientFactory clientFactory)
+        public CartController(ICartsManager cartsManager, IOptions<TaxSettings> taxSettings)
         {
             CartsManager = cartsManager;
             TaxSettings = taxSettings.Value;
-            Client = clientFactory.CreateClient("products");
         }
         
         [HttpPut("/create")]
@@ -42,10 +40,9 @@ namespace EqualExpertsShoppingCartAPI.Controllers
         {
             try
             {
-                var cart = CartsManager.GetCartById(id);
-                var cartManager = new CartManager(TaxSettings, cart, Client);
-                cartManager.AddProductInfo(productName, quantity);
-                return Ok();
+                var cartManager = CartsManager.GetCartManagerById(id);
+                var result = cartManager.AddProductInfo(productName, quantity);
+                return Ok(result);
             }
             catch (ProductNotFoundException ex)
             {
@@ -63,10 +60,9 @@ namespace EqualExpertsShoppingCartAPI.Controllers
         {
             try
             {
-                var cart = CartsManager.GetCartById(id);
-                var cartManager = new CartManager(TaxSettings, cart, Client);
-                cartManager.RemoveProductInfo(productName, quantity);
-                return Ok();
+                var cartManager = CartsManager.GetCartManagerById(id);
+                var result = cartManager.RemoveProductInfo(productName, quantity);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -80,14 +76,13 @@ namespace EqualExpertsShoppingCartAPI.Controllers
         {
             try
             {
-                var cart = CartsManager.GetCartById(id);
-                var cartManager = new CartManager(TaxSettings, cart, Client);
+                var cartManager = CartsManager.GetCartManagerById(id);
                 var invoice = cartManager.GenerateDetailedInvoice();
                 return Ok(invoice);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500,ex.Message);
             }
         }
     }
