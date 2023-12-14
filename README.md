@@ -1,3 +1,10 @@
+## Reviewer Instructions
+If you are reviewing this submission, then you can do so in two ways
+
+* Look at the changes in [this pull request](https://github.com/equalexperts-assignments/equal-experts-pestilent-developmental-tunic-a4c6def3eb66/pull/1)
+* Browse the code on Github
+    
+
 # Instructions for the assignment
 
 1. Clone this repository on your machine.
